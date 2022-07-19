@@ -22,15 +22,9 @@ cloud.generateWater();
 document.addEventListener('mousemove', function (e) {
     Mouse.x = e.clientX;
     Mouse.y = e.clientY;
-    // let drop = new WaterDrop(Mouse.x, Mouse.y, Obstacles);
-    // waterdrops.push(drop);
-    // if(waterdrops.length > 2000) {
-    //     waterdrops.shift();
-    // }
 })
 
 document.addEventListener("click", e => {
-    // delete the nearest obstacle on left click
     if (e.button === 0) {
         let nearestObstacle = Obstacles.reduce((nearest, obstacle) => {
             let distance = Math.sqrt(Math.pow(obstacle.x - Mouse.x, 2) + Math.pow(obstacle.y - Mouse.y, 2));
