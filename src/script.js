@@ -7,7 +7,7 @@ const WaterDrop = require('./structure/waterdrop');
 const canvas = new Canvas(1920, 1080);
 
 const ctx = canvas.getContext();
-const Obstacles = [
+var Obstacles = [
     new Obstacle(500, 600, 100),
     new Obstacle(200, 600, 100),  
     new Obstacle(800, 600, 100),
@@ -29,6 +29,23 @@ document.addEventListener('mousemove', function (e) {
     // }
 })
 
+document.addEventListener("click", e => {
+    // delete the nearest obstacle on left click
+    if (e.button === 0) {
+        let nearestObstacle = Obstacles.reduce((nearest, obstacle) => {
+            let distance = Math.sqrt(Math.pow(obstacle.x - Mouse.x, 2) + Math.pow(obstacle.y - Mouse.y, 2));
+            if (distance < nearest.distance) {
+                nearest.distance = distance;
+                nearest.obstacle = obstacle;
+            }
+            return nearest;
+        }, { distance: Infinity, obstacle: null });
+        if (nearestObstacle.obstacle) {
+            Obstacles.splice(Obstacles.indexOf(nearestObstacle.obstacle), 1);
+        }
+    }
+    Obstacles.push(new Obstacle(e.clientX, e.clientY, 100));
+})
 
 
 function init() {

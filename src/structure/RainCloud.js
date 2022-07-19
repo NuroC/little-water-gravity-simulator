@@ -23,6 +23,13 @@ class RainCloud {
             this.waterdrops[i].draw(ctx);
         }
     }
+    getWaterrDebugInfo() {
+        let avgVelocity = 0;
+        for (let i = 0; i < this.waterdrops.length; i++) {
+            avgVelocity += this.waterdrops[i].velocity.y;
+        }
+
+    }
 }
 
 module.exports = RainCloud;
