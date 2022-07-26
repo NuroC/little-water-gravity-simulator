@@ -21,13 +21,10 @@ class Waterdrop {
         this.update(ctx);
     }
     update(ctx) {
-        this.x += this.velocity.x / 2;
-        this.y += this.velocity.y / 2;
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
 
         this.velocity.y += this.speed;
-        if (this.velocity.y > 3) {
-            this.velocity.y *= .9;
-        }
         for (let i = 0; i < this.obstacles.length; i++) {
             let obstacle = this.obstacles[i];
             let cc = circleCircle(this.x, this.y, this.radius, obstacle.x, obstacle.y, obstacle.radius)
